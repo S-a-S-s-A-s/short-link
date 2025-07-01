@@ -1,0 +1,15 @@
+server:
+  port: 9093
+
+spring:
+  application:
+    name: dcloud-gateway
+
+#服务注册发现
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.31.58.108:8848
+        username: nacos
+        password: nacos
+

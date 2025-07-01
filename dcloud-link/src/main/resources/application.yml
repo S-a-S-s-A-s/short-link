@@ -1,9 +1,9 @@
 server:
-  port: 9091
+  port: 9094
 
 spring:
   application:
-    name: dcloud-account
+    name: dcloud-link
 
 #服务注册发现
   cloud:
