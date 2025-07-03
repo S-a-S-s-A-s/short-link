@@ -2,6 +2,7 @@ package net.xdclass.component;
 
 import lombok.extern.slf4j.Slf4j;
 import net.xdclass.config.SmsConfig;
+import net.xdclass.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +25,8 @@ public class SmsComponent {
 
     public void send(String mobbile, String param){
 
+        long beginTime = CommonUtil.getCurrentTimestamp();
+
         String url = String.format(UrlTemplate, mobbile, smsConfig.getTemplateId(), smsConfig.getSmsSignId(), param);
 
         HttpHeaders headers = new HttpHeaders();
@@ -31,7 +34,9 @@ public class SmsComponent {
         HttpEntity entity = new HttpEntity<>(headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
-        log.info("url={}, body={}", url, response);
+        long endTime = CommonUtil.getCurrentTimestamp();
+
+        log.info("耗时={}ms, url={}, body={}", endTime - beginTime, url, response);
 
         if(response.getStatusCode().is2xxSuccessful()){
             log.info("发送验证码成功");

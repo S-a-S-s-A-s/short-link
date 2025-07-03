@@ -21,7 +21,8 @@ public class SmsTest {
     @Test
     public void testSendSms(){
 
-        smsComponent.send("17773144837", "112233");
-
+        for(int i = 0; i < 3; i++) {
+            smsComponent.send("17773144837", "**code**:12345,**minute**:5");
+        }
     }
 }
